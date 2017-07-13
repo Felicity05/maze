@@ -1,43 +1,38 @@
-
 package maze;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 import javax.swing.JOptionPane;
 
-public class MazeDemo
-{
-   public static void main(String args[]) throws FileNotFoundException
-   {
-       int i = 0, j = 0;
-       
-       
-       char[][] m = {
-         {'*', ' ', '*', '*', '*', '*', '*', '*', '*'}, 
-         {'*', ' ', ' ', ' ', ' ', ' ', '*', ' ', '*'}, 
-         {'*', ' ', '*', '*', '*', '*', '*', ' ', '*'}, 
-         {'*', ' ', '*', ' ', '*', ' ', ' ', ' ', '*'}, 
-         {'*', ' ', '*', ' ', '*', '*', '*', ' ', '*'}, 
-         {'*', ' ', ' ', ' ', '*', ' ', ' ', ' ', '*'}, 
-         {'*', '*', '*', ' ', '*', ' ', '*', '*', '*'}, 
-         {'*', ' ', ' ', '*', ' ', ' ', '*', ' ', '*'}, 
-         {'*', '*', '*', '*', '*', '*', '*', ' ', '*'}};
-         
-      Maze maze = new Maze(m);
-      
-      maze.createFile();
-      //add flies from MazeGenerator
-      ArrayList<String> filesname = maze.getFiles();
-      filesname.add("maze6.txt");
-      filesname.add("maze7.txt");
-      
-      for (String s: filesname){
-          System.out.println(s);
-      }
-      
-     
-     /* int mazeCount = 0;
+public class MazeDemo {
+
+    public static void main(String args[]) throws FileNotFoundException, IOException {
+        int i = 0, j = 0;
+
+        char[][] m = {
+            {'*', ' ', '*', '*', '*', '*', '*', '*', '*'},
+            {'*', ' ', ' ', ' ', ' ', ' ', '*', ' ', '*'},
+            {'*', ' ', '*', '*', '*', '*', '*', ' ', '*'},
+            {'*', ' ', '*', ' ', '*', ' ', ' ', ' ', '*'},
+            {'*', ' ', '*', ' ', '*', '*', '*', ' ', '*'},
+            {'*', ' ', ' ', ' ', '*', ' ', ' ', ' ', '*'},
+            {'*', '*', '*', ' ', '*', ' ', '*', '*', '*'},
+            {'*', ' ', ' ', '*', ' ', ' ', '*', ' ', '*'},
+            {'*', '*', '*', '*', '*', '*', '*', ' ', '*'}};
+
+        Maze maze = new Maze(m);
+
+        maze.createFile();
+        maze.writetoFile(10);
+        
+        //add flies from MazeGenerator
+        ArrayList<String> filesname = maze.getFiles();
+       // filesname.add("maze6.txt");
+      //  filesname.add("maze7.txt");
+
+        
+
+       int mazeCount = 0;
       
       for (String files : filesname)
       {
@@ -59,7 +54,6 @@ public class MazeDemo
                  maze.printMaze();
                  System.out.println("====================================");
             }
-      }*/
-    }   
+      }
+    }
 }
-

@@ -1,9 +1,7 @@
-
 package maze;
 
 import java.io.*;
 import java.util.*;
-
 
 /**
  *
@@ -17,67 +15,54 @@ public class Maze {
 
     public Maze(char[][] m) {
         this.maze = m;
-        list = new ArrayList<>(); 
+        list = new ArrayList<>();
     }
 
-    //write to the file
-    public void createFile()
-    {
+    //create 5 new emty files
+    public void createFile() {
         int count = 0;
-        for(int i =0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             String filename = "maze" + ++count + ".txt";
             File file = new File(filename);
-            try 
-            {
-            file.createNewFile();
-            list.add(filename);
-            System.out.println("File " + file + " created");
-            }
-            catch(Exception e)
-            {   
+            try {
+                file.createNewFile();
+                list.add(filename);
+                System.out.println("File " + file + " created");
+            } catch (Exception e) {
                 System.out.println("There is an error with the file");
             }
         }
     }
-    
-    public void writetoFile() throws IOException
-    {
-       // FileWriter filew;
-        
-        for (String file : list){
-            //filew = new FileWriter(file);
-            PrintStream output = new PrintStream(file);
-            output.print(generator(10));
-        }    
+
+    //write to each file
+    public void writetoFile(int n) throws IOException {
+        // FileWriter filew;
+
+        for (String file : list) {
+            FileWriter filew = new FileWriter(file);
+            BufferedWriter bufw = new BufferedWriter(filew);
+            Random r = new Random();
+            char[][] m = new char[n][n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                  int rnum = 1 + r.nextInt(10);
+                  if (rnum > 5) {
+                    bufw.write(m[i][j] = ' ');
+                  } 
+                  else {
+                    bufw.write(m[i][j] = '*');
+                  }
+                }
+                bufw.newLine();
+            }
+            bufw.flush();
+        }
     }
-    
-    public ArrayList<String> getFiles()
-    {
+
+    public ArrayList<String> getFiles() {
         return list;
     }
-        
-  
-    public char[][] generator(int n)
-    {
-        Random r = new Random();
-        char[][] m = new char[n][n];
-        
-        for (int i=0; i<n; i++)
-        {
-            for (int j=0; j<n; j++)
-            {
-                int rnum = 1 + r.nextInt(10);
-            
-                if (rnum > 5)
-                    m[i][j] = '_';
-                else
-                    m[i][j] = '*';
-            }
-        }
-        return m;  
-    }
-    
-    
+
     public void loadMaze(String filename) {
         mazeSaver = new ArrayList<String>();
         int numcol = 0;
@@ -106,7 +91,6 @@ public class Maze {
                 }
             }
         }
-        
         System.out.println("\nMaze loaded from file:" + " \"" + filename + "\"");
     }
 
@@ -123,7 +107,7 @@ public class Maze {
 
     public boolean isExit(int i, int j) {
 
-        if (maze[i][j] == ' ') {
+        if (maze[i][j] == ' ' && maze[i][j] != '.') {
             if (i == 0 || j == 0 || i == maze.length - 1 || j == maze.length - 1) {
                 return true;
             }
@@ -132,7 +116,7 @@ public class Maze {
     }
 
     public boolean escapeMaze(int i, int j) {
-        if (i < 0 || j < 0 || i > mazeSaver.size() - 1 || j > mazeSaver.size() - 1) {
+        if (i < 0 || j < 0 || i > mazeSaver.size() - 1 || j > mazeSaver.size() - 1) { //cambie cosas aqui 
             //you are out of bounds
             return false;
         }
