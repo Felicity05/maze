@@ -129,7 +129,7 @@ public class Maze {
             return false;
         }
 
-        maze[i][j] = '.';
+        maze[i][j] = 'P';
 
         if (escapeMaze(i - 1, j)) {
             //maze[i][j] = 'P';

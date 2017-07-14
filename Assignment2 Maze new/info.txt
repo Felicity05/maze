@@ -1,0 +1,7 @@
+#mazefile rows columns
+maze1.txt 10 10
+maze2.txt 10 10 
+maze1.txt 10 10
+maze3.txt 10 10 
+maze4.txt 10 10
+maze5.txt 10 10 
