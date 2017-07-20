@@ -1,3 +1,4 @@
+package datstructure;
 import java.util.Random;
 
 /**
@@ -7,7 +8,7 @@ public class InsertionSortTester
 {
    public static void main(String[] args)
    {
-      LinkedList list = new LinkedList();
+      DoublyLinkedList list = new DoublyLinkedList();
       for (int i = 1; i <= 10; i++)
       {
          list.addFirst(100 - (i - 5) * (i - 5));
@@ -18,7 +19,7 @@ public class InsertionSortTester
       System.out.println("After sorting: " + list.toString());
       System.out.println("Expected: [75, 84, 84, 91, 91, 96, 96, 99, 99, 100]");
 
-      list = new LinkedList();
+      list = new DoublyLinkedList();
       list.addFirst("frog");
       list.addFirst("zebra");
       list.addFirst("aardvark");

@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maze;
+package passingarguments;
 
-import java.awt.Color;
-import static java.awt.SystemColor.text;
-import java.awt.font.TextAttribute;
-import java.io.File;
-import java.text.AttributedString;
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.*;
+import java.io.*;
+import java.util.*;
 
 /**
  *
@@ -23,7 +19,12 @@ public class MazeGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       char[][] maze = generator(15);       
+       
+        for (String s: args){
+            System.out.println("Command line arguments" + s);
+        }
+        
+        char[][] maze = generator(15);       
 
         printMaze(maze);
         

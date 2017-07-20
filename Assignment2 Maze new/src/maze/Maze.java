@@ -18,16 +18,17 @@ public class Maze {
         list = new ArrayList<>();
     }
 
-    //create 5 new emty files
+    //create 5 new empty files
     public void createFile() {
         int count = 0;
+        System.out.println("Creating files:");
         for (int i = 0; i < 5; i++) {
             String filename = "maze" + ++count + ".txt";
             File file = new File(filename);
             try {
                 file.createNewFile();
                 list.add(filename);
-                System.out.println("File " + file + " created");
+                System.out.println(file + " created");
             } catch (Exception e) {
                 System.out.println("There is an error with the file");
             }
@@ -36,8 +37,6 @@ public class Maze {
 
     //write to each file
     public void writetoFile(int n) throws IOException {
-        // FileWriter filew;
-
         for (String file : list) {
             FileWriter filew = new FileWriter(file);
             BufferedWriter bufw = new BufferedWriter(filew);
@@ -45,13 +44,12 @@ public class Maze {
             char[][] m = new char[n][n];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                  int rnum = 1 + r.nextInt(10);
-                  if (rnum > 5) {
-                    bufw.write(m[i][j] = ' ');
-                  } 
-                  else {
-                    bufw.write(m[i][j] = '*');
-                  }
+                    int rnum = 1 + r.nextInt(10);
+                    if (rnum > 5) {
+                        bufw.write(m[i][j] = ' ');
+                    } else {
+                        bufw.write(m[i][j] = '*');
+                    }
                 }
                 bufw.newLine();
             }
@@ -91,7 +89,7 @@ public class Maze {
                 }
             }
         }
-        System.out.println("\nMaze loaded from file:" + " \"" + filename + "\"");
+        System.out.println("\n\033[31m Maze loaded from file:" + " \"" + filename + "\"");
     }
 
     public int mazeSize() {
@@ -107,7 +105,7 @@ public class Maze {
 
     public boolean isExit(int i, int j) {
 
-        if (maze[i][j] == ' ' && maze[i][j] != '.') {
+        if (maze[i][j] == ' ' && maze[i][j] != 'P') { //si no funciona es por esto
             if (i == 0 || j == 0 || i == maze.length - 1 || j == maze.length - 1) {
                 return true;
             }
@@ -116,7 +114,7 @@ public class Maze {
     }
 
     public boolean escapeMaze(int i, int j) {
-        if (i < 0 || j < 0 || i > mazeSaver.size() - 1 || j > mazeSaver.size() - 1) { //cambie cosas aqui 
+        if (i < 0 || j < 0 || i > mazeSaver.size() - 1 || j > mazeSaver.size() - 1) { 
             //you are out of bounds
             return false;
         }

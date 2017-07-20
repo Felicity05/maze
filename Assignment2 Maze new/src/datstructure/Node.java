@@ -7,19 +7,22 @@ package datstructure;
 
 /**
  *
- * @author aalva456
+ * @author arelysalvarezpadilla
  */
 public class Node {
-    
-     Node next;
-     Node prev;
-     int data;
-    
-    public Node(int d)
-    {
+    public Node next;
+    public Node prev;
+    public Object data;
+
+    public Node() {
+        this.prev = null;
+        this.data = null;
+        this.next = null;
+    }
+
+    public Node(Object d) {
         this.prev = null;
         this.data = d;
         this.next = null;
     }
-    
 }
